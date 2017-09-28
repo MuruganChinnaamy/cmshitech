@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_allowances_and_deductions_form" model="ir.ui.view">
+	          <field name="name">view.allowances.and.deductions.form</field>
+	          <field name="model">allowances.and.deductions</field>
+	          <field name="type">form</field>
+	          <field name="arch" type="xml">
+	          <form string='Allowances and Deductions'>
+	          		<header>
+						<button name="button_confirm" states="draft" type="object" string="Confirm" class="oe_highlight"/>
+						<button name="button_cancel" states="draft" string="Cancel" type="object" class="oe_highlight"/>	
+						<button name="button_reset" states="done" string="Reset" type="object" class="oe_highlight"/>	
+						<field name="state" widget="statusbar"/>						
+					</header>
+					<group>
+						<group>
+							<field name="date_from" required="1"/>
+							<field name="salary_rule_id"/>
+						</group>
+						<group>
+							<field name="date_to" required="1"/>
+						</group>
+					</group>
+	          		<notebook>
+		          		<page string="Lines">
+		          			<field name="allowance_deduction_lines">
+		          				<tree editable="bottom">
+		              				<field name="employee_id" required="1" domain="['|', ('date_left', '=', False), ('date_left', '&gt;', parent.date_from), ('date_joined', '&lt;=', parent.date_to)]"/>
+		              				<field name="amount" required="1"/>
+		              				<field name="state" invisible="1"/>
+		          				</tree>
+		              		</field>
+		              	</page>
+		              	<page string="Change Log">
+                            <field name="allowances_and_deductions_change_log">
+                           		<tree editable="bottom">
+                           			<field name="user_id"/>
+                           			<field name="changed_on"/>
+                           			<field name="from_state"/>
+                           			<field name="to_state"/>
+                           		</tree>
+                            </field>
+                       </page>
+	              	</notebook>
+	          	</form>
+			  </field>
+		</record>
+	
+		
+		<record id="view_allowances_and_deductions_tree" model="ir.ui.view">
+	          <field name="name">view.allowances.and.deductions.tree</field>
+	          <field name="model">allowances.and.deductions</field>
+	          <field name="type">tree</field>
+	          <field name="arch" type="xml">
+	          	<tree string='Allowances and Deductions'>
+	       			<field name="date_from"/>
+	       			<field name="date_to"/>
+	       			<field name="salary_rule_id"/>
+	       			<field name="state"/>
+	          	</tree>
+			  </field>
+		</record>
+		
+		<record id="view_allowances_and_deductions_filter" model="ir.ui.view">
+	             <field name="name">view.allowances.and.deductions.filter</field>
+	             <field name="model">allowances.and.deductions</field>
+	             <field name="arch" type="xml">
+		              <search string="Search Allowances and Deductions">
+		              		<field name="date_from" string="Date From"/>
+		                    <field name="date_to" string="Date To"/>
+		                    <field name="salary_rule_id" string="Salary Head"/>
+		                    <group col="8" colspan="4" expand="0" string="Group By">
+		                    	<filter string="State" name="group_by_state" icon="terp-camera_test" context="{'group_by':'state'}"/>
+		                    	<filter string="Salary Head" name="group_by_salary_rule_id" icon="terp-folder-yellow" context="{'group_by':'salary_rule_id'}"/>
+		                    </group>
+	                  </search>
+	             </field>
+	    </record>
+		
+		
+	    <record id="action_allowances_and_deductions" model="ir.actions.act_window">
+	        <field name="name">Allowances and Deductions</field>
+	        <field name="res_model">allowances.and.deductions</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="view_id" ref="view_allowances_and_deductions_tree"/>
+		    <field name="search_view_id" ref="view_allowances_and_deductions_filter"/>
+	    </record>
+	   
+	   <menuitem id="menu_hr_payroll_process" name="Process" parent="hr_payroll.menu_hr_payroll_root"
+            sequence="10" groups="hr_payroll.group_hr_payroll_manager"/>
+	   
+	   <menuitem action="action_allowances_and_deductions" id="menu_allowances_and_deductions" parent="menu_hr_payroll_process" 
+       			 sequence="1"/>
+
+    </data>
+</odoo>

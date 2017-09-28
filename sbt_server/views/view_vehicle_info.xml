@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record model="ir.ui.menu" id="fleet.menu_root">
+		<field name="name">Vehicle Info</field>
+	 	<field name="groups_id" eval="[(6,0,[ref('sbt_group_user')])]"/>
+	</record>
+	
+	<record model="ir.ui.menu" id="fleet.fleet_configuration">
+	 	<field name="groups_id" eval="[(6,0,[ref('sbt_group_vehicle_manager')])]"/>
+	</record>
+	
+	<record model="ir.ui.menu" id="fleet.fleet_vehicle_model_menu">
+	 	<field name="groups_id" eval="[(6,0,[ref('sbt_group_vehicle_manager')])]"/>
+	</record>
+
+	<record model="ir.ui.menu" id="fleet.fleet_vehicle_model_brand_menu">
+	 	<field name="groups_id" eval="[(6,0,[ref('sbt_group_vehicle_manager')])]"/>
+	</record>
+	
+	<record model="ir.ui.menu" id="fleet.fleet_vehicle_state_menu">
+	 	<field name="groups_id" eval="[(6,0,[ref('sbt_group_vehicle_manager')])]"/>
+	</record>
+
+
+</odoo>

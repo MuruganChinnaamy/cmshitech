@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_allowances_and_deductions_sbt_group_admin,access.allowances.and.deductions.sbt.group.admin,model_allowances_and_deductions,sbt_group_admin,1,1,1,1
+access_allowances_and_deductions_line_sbt_group_admin,access.allowances.and.deductions.line.sbt.group.admin,model_allowances_and_deductions_line,sbt_group_admin,1,1,1,1
+access_allowances_and_deductions_change_log_sbt_group_admin,access.allowances.and.deductionschange.log.sbt.group.admin,model_allowances_and_deductions_change_log,sbt_group_admin,1,1,1,1

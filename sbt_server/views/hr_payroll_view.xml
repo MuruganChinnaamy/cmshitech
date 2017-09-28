@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		
+
+       
+        
+        <record id="view_hr_payslip_form_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.form.inherit</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+				<field name="credit_note" position="replace">
+					<field name="total_days" />	
+					<field name="lop_days" required="1" />	
+					<field name="work_days" required="1" />					
+					<field name="per_day" />	
+									
+				</field>
+				
+				<button name="compute_sheet" position="after">
+					<button string="Refresh Net" name="refresh_sheet" type="object" states="draft" class="oe_highlight"/>
+					
+				</button>
+				
+				
+			</field>
+		</record>     
+		
+		
+		
+		 <record id="view_hr_payslip_tree_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.tree.inherit</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_tree"/>
+            <field name="arch" type="xml">
+               <field name="employee_id" position="after">
+               <field name="unique_id" />
+               </field>
+            </field>
+        </record>
+        
+       
+    </data>
+</odoo>
+

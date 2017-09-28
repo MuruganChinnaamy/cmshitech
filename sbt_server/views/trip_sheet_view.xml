@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+
+	<menuitem id="trip_sheet_root" name="Trip Sheet"/>
+	<menuitem id="site_info_configuration" name="Configuration" parent="trip_sheet_root" sequence="20"/>
+	<menuitem id="menu_trip_sheet_entry_operations" name="Operations" parent="trip_sheet_root" sequence="19"/>
+
+
+	<record id='sbt_site_info_view_form' model='ir.ui.view'>
+		<field name="name">sbt.site.info.view.form</field>
+		<field name="model">sbt.site.info</field>
+		<field name="arch" type="xml">
+			<form string="Site Information">
+				<header>
+					<field name="state" widget="statusbar" statusbar_visible="draft,active,archived" class="oe_highlight"/>
+				</header>
+				<sheet>
+					<group>
+						<field name="site_id"/>
+					</group>
+					<notebook>
+						<page string="Site Info Lines">
+							<field name="sbt_site_info_line_ids" required="1">
+								<tree editable="bottom">
+									<field name="sbt_site_info_id" invisible="1"/>
+									<field name="serial_no"/>
+									<field name="area_id"/>
+									<field name="one_way"/>
+									<field name="two_way"/>
+									<field name="state" invisible="1"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+				
+				
+
+     <record id='sbt_site_info_view_tree' model='ir.ui.view'>
+         <field name="name">sbt.site.info.view.tree</field>
+         <field name="model">sbt.site.info</field>
+         <field name="arch" type="xml">
+             <tree string="Site Information">
+                 <field name="site_id"/>
+                 <field name="state"/>
+             </tree>
+         </field>
+     </record>
+        
+     <record id='sbt_site_info_view_search' model='ir.ui.view'>
+         <field name="name">sbt.site.info.search.view</field>
+         <field name="model">sbt.site.info</field>
+         <field name="arch" type="xml">
+             <search string="Site Name" >
+                 <field name="site_id" />
+                 <group expand="1" string="Group By">
+                     <filter name="site_name" context="{'group_by' : 'site_id'}" string="Site"/>
+                 </group>
+             </search>
+         </field>
+     </record>
+
+     <record id='sbt_site_info_action' model='ir.actions.act_window'>
+         <field name="name">Site Information</field>
+         <field name="res_model">sbt.site.info</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+         <field name="context">{}</field>
+         <field name="help" type="html">
+           <p class="oe_view_nocontent_create">
+             Click to create a Site.
+           </p><p>
+             Here you can define several Sites with kilometers both one way and two way.
+           </p>
+         </field>
+     </record>
+        
+
+	<menuitem action="sbt_site_info_action" parent="site_info_configuration" id="menu_sbt_site_info_action" groups="sbt_group_vehicle_manager" sequence="0"/>
+        
+        
+        
+ 	<!-- Site Master -->
+ 	       
+	<record id='sbt_site_view_form' model='ir.ui.view'>
+		<field name="name">sbt.site.view.form</field>
+		<field name="model">sbt.site</field>
+		<field name="arch" type="xml">
+			<form string="Site">
+				<group>
+					<field name="name" required="1"/>
+				</group>
+			</form>
+		</field>
+	</record>        
+        
+     <record id='sbt_site_view_tree' model='ir.ui.view'>
+         <field name="name">sbt.site.view.tree</field>
+         <field name="model">sbt.site</field>
+         <field name="arch" type="xml">
+             <tree string="Site">
+                 <field name="name"/>
+             </tree>
+         </field>
+     </record>       
+     
+     <record id='sbt_site_action' model='ir.actions.act_window'>
+         <field name="name">Site</field>
+         <field name="res_model">sbt.site</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+         <field name="context">{}</field>
+         <field name="help" type="html">
+           <p class="oe_view_nocontent_create">
+             Click to create a Site.
+           </p>
+         </field>
+     </record>     
+     
+	<menuitem action="sbt_site_action" parent="site_info_configuration" id="menu_sbt_site_action" groups="sbt_group_vehicle_manager" sequence="1"/>
+        
+        
+ 	<!-- Area Master -->
+ 	       
+	<record id='sbt_area_view_form' model='ir.ui.view'>
+		<field name="name">sbt.area.view.form</field>
+		<field name="model">sbt.area</field>
+		<field name="arch" type="xml">
+			<form string="Area">
+				<group>
+					<field name="name" required="1"/>
+				</group>
+			</form>
+		</field>
+	</record>        
+        
+     <record id='sbt_area_view_tree' model='ir.ui.view'>
+         <field name="name">sbt.area.view.tree</field>
+         <field name="model">sbt.area</field>
+         <field name="arch" type="xml">
+             <tree string="Area">
+                 <field name="name"/>
+             </tree>
+         </field>
+     </record>
+     
+     <record id='sbt_area_action' model='ir.actions.act_window'>
+         <field name="name">Area</field>
+         <field name="res_model">sbt.area</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+         <field name="context">{}</field>
+         <field name="help" type="html">
+           <p class="oe_view_nocontent_create">
+             Click to create an Area.
+           </p>
+         </field>
+     </record>     
+     
+	<menuitem action="sbt_area_action" parent="site_info_configuration" id="menu_sbt_area_action" groups="sbt_group_vehicle_manager" sequence="2"/>        
+        
+        
+        
+        
+        
+        
+        
+	<record id='trip_sheet_entry_form' model='ir.ui.view'>
+		<field name="name">trip.sheet.entry.form</field>
+		<field name="model">trip.sheet.entry</field>
+		<field name="arch" type="xml">
+			<form string="Trip Sheet Entry">
+				<header>
+					<field name="state" widget="statusbar" statusbar_visible="draft,active,archived" class="oe_highlight"/>
+				</header>
+				<sheet>
+					<group>
+						<field name="trip_date"/>
+					</group>
+					<notebook>
+						<page string="Trip Sheet Entry Lines">
+							<field name="trip_sheet_entry_line_ids" required="1">
+								<tree editable="bottom">
+									<field name="trip_sheet_entry_id" invisible="1"/>
+									<field name="site_id"/>
+									<field name="vehicle_id"/>
+									<field name="area_id"/>
+									<field name="pickup_type"/>
+									<field name="passing_kms" attrs="{'invisible': [('pickup_type','!=', 'passing')]}"/>
+									<field name="total_kms"/>
+									<field name="state" invisible="1"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	
+	
+     <record id='trip_sheet_entry_lines_tree' model='ir.ui.view'>
+         <field name="name">trip.sheet.entry.lines.tree</field>
+         <field name="model">trip.sheet.entry.lines</field>
+         <field name="arch" type="xml">
+             <tree string="Trip Sheet Entry Lines">
+				<field name="trip_sheet_entry_id" invisible="1"/>
+				<field name="site_id"/>
+				<field name="vehicle_id"/>
+				<field name="area_id"/>
+				<field name="pickup_type"/>
+				<field name="passing_kms" attrs="{'invisible': [('pickup_type','!=', 'passing')]}"/>
+				<field name="total_kms"/>
+				<field name="state" invisible="1"/>
+             </tree>
+         </field>
+     </record>  	
+	
+	        
+        
+        
+     <record id='trip_sheet_entry_tree' model='ir.ui.view'>
+         <field name="name">trip.sheet.entry.tree</field>
+         <field name="model">trip.sheet.entry</field>
+         <field name="arch" type="xml">
+             <tree string="Trip Sheet Entry">
+                 <field name="trip_date"/>
+                 <field name="state"/>
+             </tree>
+         </field>
+     </record>        
+        
+        
+     <record id='trip_sheet_entry_action' model='ir.actions.act_window'>
+         <field name="name">Trip Sheet Entry</field>
+         <field name="res_model">trip.sheet.entry</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+         <field name="context">{}</field>
+         <field name="help" type="html">
+           <p class="oe_view_nocontent_create">
+             Click to create a Trip Sheet.
+           </p>
+         </field>
+     </record>         
+        
+        
+	<menuitem action="trip_sheet_entry_action" parent="menu_trip_sheet_entry_operations" id="menu_trip_sheet_entry_action" groups="sbt_group_vehicle_manager" sequence="1"/>        
+        
+        
+        
+</odoo>
